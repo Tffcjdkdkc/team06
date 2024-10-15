@@ -12,7 +12,7 @@
             padding: 20px;
         }
         header {
-            background-color: #4CAF50;
+            background-color: #0ee915;
             color: white;
             text-align: center;
             padding: 20px;
@@ -35,10 +35,13 @@
             padding: 20px;
             border-radius: 8px;
             max-width: 800px;
-            box-shadow: 0 0 10px rgba(209, 4, 236, 0.1);
+            box-shadow: 0 0 10px rgb(250, 252, 249);
         }
         h1 {
-            color: #4CAF50;
+            color: #17da1e;
+        }
+        p {
+            color: #f5fbf5;
         }
         .goal {
             margin-bottom: 20px;
