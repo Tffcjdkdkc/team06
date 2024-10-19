@@ -31,20 +31,22 @@
             margin-top: 20px;
         }
         .goal {
-            margin-bottom: 20px;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            background-color: #f9f9f9;
-            display: flex;
-            align-items: center;
-             transition: background-color 0.3s, transform 0.2s; /* 加入 transform 的過渡 */
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s;
 }
-        .goal:hover {
-            background-color: #f1f1f1;
-            transform: scale(1.05);
-            z-index: 1;
-        }
+
+.goal:hover {
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transform: scale(1.03);
+}
         .goal-number {
             font-size: 30px;
             font-weight: bold;
@@ -64,20 +66,30 @@
             padding-left: 20px;
         }
         footer {
+            background-color: #f1f1f1;
+            padding: 15px;
             text-align: center;
-            margin-top: 30px;
             font-size: 0.9em;
-            color: #555;
-        }
-        .goal img {
-           /* width: auto; /* 調整為更大的寬度 */
-           /* height: 100px; /* 自動調整高度 */
-          /* margin-right: 10px;
-          /*  transition: transform 0.2s;*/
-        }
-        .goal img:hover {
-            /*transform: scale(1.1);*/
-        }
+            color: #333;
+              }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+            }
+        footer a:hover {
+             text-decoration: underline;
+         }
+         @media (max-width: 600px) {
+    .goal {
+        flex-direction: column; /* 將項目垂直顯示 */
+        align-items: flex-start;
+    }
+    .goal img {
+        margin: 0 0 10px 0; /* 調整圖像的邊距 */
+    }
+}
+
+ 
     </style>
 </head>
 <body>
@@ -113,7 +125,8 @@
         ["title" => "陸地生態", "description" => "保護、恢復和促進陸地生態系統的可持續管理。", "icon" => "fa-tree", "image" => "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-15.jpg"],
         ["title" => "和平與公正", "description" => "促進包容的社會，實現可持續發展。", "icon" => "fa-dove", "image" => "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-16.jpg"],
         ["title" => "夥伴關係", "description" => "加強實現可持續發展的執行手段，振興全球夥伴關係。", "icon" => "fa-hands-helping", "image" => "https://sdgs.un.org/sites/default/files/goals/E_SDG_Icons-17.jpg"],
-];
+
+ ];
 
     foreach ($goals as $index => $goal) {
         echo '<div class="goal">';
@@ -122,7 +135,6 @@
         echo '<div>';
         echo '<h3>' . $goal['title'] . '</h3>';
         echo '<p>' . $goal['description'] . '</p>';
-        echo '<div class="goal-description">' . $goal['description'] . '</div>';
         echo '</div>';
         echo '</div>';
     }
@@ -145,7 +157,7 @@
 </div>
 
 <footer>
-    <p>© 2024 可持續發展目標介紹網站</p>
+    <p>© 2024 可持續發展目標介紹網站:<a href="https://sdgs.un.org/goals" target="_blank">聯合國 SDGs 官方網站</a></p>
 </footer>
 
 </body>
