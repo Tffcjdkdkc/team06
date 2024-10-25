@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(water_supply_statisticsTableSeeder::class);
         // \App\Models\User::factory(10)->create();
     }
 }
