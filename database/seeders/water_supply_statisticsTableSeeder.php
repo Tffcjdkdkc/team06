@@ -11,10 +11,11 @@ class water_supply_statisticsTableSeeder extends Seeder
      *
      * @return void
      */
-    public function run()
-    {
-      
-          /* 在這裡插入數據
+
+    
+     public function run(){
+/*
+          在這裡插入數據
           DB::table('water_supply_statistics')->insert([
             ['ActualPopulationServed' => '17082199', 'DateTime' => '2006-12-31 00:00:00', 'ExecutingUnit' => '台灣自來水股份有限公司(含高雄市)', 'PercentageOfPopulationServed' => 90.3, 'PopulationInServedArea' => 18917224, 'Remarks' => '無'],
             ['ActualPopulationServed' => '72218', 'DateTime' => '2006-12-31 00:00:00', 'ExecutingUnit' => '金門縣自來水廠', 'PercentageOfPopulationServed' => 94.41, 'PopulationInServedArea' => 76491, 'Remarks' => '無'],
@@ -75,7 +76,47 @@ class water_supply_statisticsTableSeeder extends Seeder
             ['ActualPopulationServed' => '1995589', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '第十二區管理處', 'PercentageOfPopulationServed' => 98.89, 'PopulationInServedArea' => 2017954, 'Remarks' => '無'],
             ['ActualPopulationServed' => '182162', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '第十區管理處', 'PercentageOfPopulationServed' => 78.29, 'PopulationInServedArea' => 232663, 'Remarks' => '無'],
             ['ActualPopulationServed' => '1145639', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '第三區管理處', 'PercentageOfPopulationServed' => 83.01, 'PopulationInServedArea' => 1380103, 'Remarks' => '無'],
-        
+            ['ActualPopulationServed' => '1439633', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '第五區管理處', 'PercentageOfPopulationServed' => 92.98, 'PopulationInServedArea' => 1548291, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1846868', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '第六區管理處', 'PercentageOfPopulationServed' => 98.7, 'PopulationInServedArea' => 1871099, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '2846477', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '第四區管理處', 'PercentageOfPopulationServed' => 89.18, 'PopulationInServedArea' => 3191935, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '9788', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '連江縣自來水廠', 'PercentageOfPopulationServed' => 98.46, 'PopulationInServedArea' => 9941, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '3853726', 'DateTime' => '2008-06-30 00:00:00', 'ExecutingUnit' => '臺北自來水事業處', 'PercentageOfPopulationServed' => 99.51, 'PopulationInServedArea' => 3872626, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '17300119', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '台灣自來水股份有限公司(含高雄市)', 'PercentageOfPopulationServed' => 90.7, 'PopulationInServedArea' => 19073097, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '79907', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '金門縣自來水廠', 'PercentageOfPopulationServed' => 94.49, 'PopulationInServedArea' => 84570, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '817839', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第一區管理處', 'PercentageOfPopulationServed' => 92.36, 'PopulationInServedArea' => 885468, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '3119828', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第七區管理處', 'PercentageOfPopulationServed' => 83.25, 'PopulationInServedArea' => 3747646, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '283134', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第九區管理處', 'PercentageOfPopulationServed' => 82.93, 'PopulationInServedArea' => 341433, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1965359', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第二區管理處', 'PercentageOfPopulationServed' => 94.33, 'PopulationInServedArea' => 2083536, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '422200', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第八區管理處', 'PercentageOfPopulationServed' => 91.6, 'PopulationInServedArea' => 460902, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1208545', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第十一區管理處', 'PercentageOfPopulationServed' => 93.84, 'PopulationInServedArea' => 1287845, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '2006815', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第十二區管理處', 'PercentageOfPopulationServed' => 98.9, 'PopulationInServedArea' => 2029082, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '181724', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第十區管理處', 'PercentageOfPopulationServed' => 78.38, 'PopulationInServedArea' => 231849, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1154108', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第三區管理處', 'PercentageOfPopulationServed' => 83.19, 'PopulationInServedArea' => 1387273, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1438009', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第五區管理處', 'PercentageOfPopulationServed' => 93, 'PopulationInServedArea' => 1546198, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1848565', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第六區管理處', 'PercentageOfPopulationServed' => 98.72, 'PopulationInServedArea' => 1872559, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '2853993', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '第四區管理處', 'PercentageOfPopulationServed' => 89.21, 'PopulationInServedArea' => 3199306, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '9636', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '連江縣自來水廠', 'PercentageOfPopulationServed' => 98.78, 'PopulationInServedArea' => 9755, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '3850709', 'DateTime' => '2008-12-31 00:00:00', 'ExecutingUnit' => '臺北自來水事業處', 'PercentageOfPopulationServed' => 99.51, 'PopulationInServedArea' => 3869609, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '17328164', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '台灣自來水股份有限公司(含高雄市)', 'PercentageOfPopulationServed' => 90.7, 'PopulationInServedArea' => 19105051, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '84548', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '金門縣自來水廠', 'PercentageOfPopulationServed' => 94.5, 'PopulationInServedArea' => 89471, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '820490', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第一區管理處', 'PercentageOfPopulationServed' => 92.36, 'PopulationInServedArea' => 888341, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '3120536', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第七區管理處', 'PercentageOfPopulationServed' => 83.27, 'PopulationInServedArea' => 3747501, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '282850', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第九區管理處', 'PercentageOfPopulationServed' => 82.97, 'PopulationInServedArea' => 340903, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1968956', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第二區管理處', 'PercentageOfPopulationServed' => 94.01, 'PopulationInServedArea' => 2094458, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '424465', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第八區管理處', 'PercentageOfPopulationServed' => 91.98, 'PopulationInServedArea' => 461461, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1206002', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第十一區管理處', 'PercentageOfPopulationServed' => 93.69, 'PopulationInServedArea' => 1287169, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '2015229', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第十二區管理處', 'PercentageOfPopulationServed' => 98.91, 'PopulationInServedArea' => 2037378, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '181911', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第十區管理處', 'PercentageOfPopulationServed' => 78.39, 'PopulationInServedArea' => 232071, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1162420', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第三區管理處', 'PercentageOfPopulationServed' => 83.4, 'PopulationInServedArea' => 1393738, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1436984', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第五區管理處', 'PercentageOfPopulationServed' => 93.02, 'PopulationInServedArea' => 1544786, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '1849502', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第六區管理處', 'PercentageOfPopulationServed' => 98.73, 'PopulationInServedArea' => 1873213, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '2858819', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '第四區管理處', 'PercentageOfPopulationServed' => 89.23, 'PopulationInServedArea' => 3204032, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '9669', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '連江縣自來水廠', 'PercentageOfPopulationServed' => 98.68, 'PopulationInServedArea' => 9798, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '3846125', 'DateTime' => '2009-06-30 00:00:00', 'ExecutingUnit' => '臺北自來水事業處', 'PercentageOfPopulationServed' => 99.51, 'PopulationInServedArea' => 3865025, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '17377812', 'DateTime' => '2009-12-31 00:00:00', 'ExecutingUnit' => '台灣自來水股份有限公司(含高雄市)', 'PercentageOfPopulationServed' => 90.72, 'PopulationInServedArea' => 19155092, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '88632', 'DateTime' => '2009-12-31 00:00:00', 'ExecutingUnit' => '金門縣自來水廠', 'PercentageOfPopulationServed' => 94.49, 'PopulationInServedArea' => 93803, 'Remarks' => '無'],
+            ['ActualPopulationServed' => '826691', 'DateTime' => '2009-12-31 00:00:00', 'ExecutingUnit' => '第一區管理處', 'PercentageOfPopulationServed' => 92.49, 'PopulationInServedArea' => 893828, 'Remarks' => '無'],
+//100
         ]);*/
     }
 }
