@@ -39,7 +39,7 @@ class WaterServicePopulationsSeeder extends Seeder
 
         for ($i = 0; $i < $numberOfRecords; $i++) {
             $populationInServedArea = rand(10000, 5000000); // 隨機生成服務區域人口
-            $populationServed = rand(5000, $populationInServedArea); // 確保實際服務人口不會超過服務區域人口
+            $populationServed = rand(8000, $populationInServedArea); // 確保實際服務人口不會超過服務區域人口
             $percentageOfpopulationServed = min(round(($populationServed / $populationInServedArea) * 100, 2), 100);
             
            
@@ -51,6 +51,10 @@ class WaterServicePopulationsSeeder extends Seeder
             'percentage_of_population_served' => $percentageOfpopulationServed,
             'population_in_served_area' => $populationInServedArea,
             'remarks' => '無',
+            'created_at' => now(),
+            'updated_at'=> now(),
+
+            
 
         ]
         ]);
