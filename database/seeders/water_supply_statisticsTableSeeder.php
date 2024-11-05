@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 class water_supply_statisticsTableSeeder extends Seeder
 {
     /**
@@ -14,6 +15,149 @@ class water_supply_statisticsTableSeeder extends Seeder
 
     
      public function run(){
+        $executingUnits = [
+            '台灣自來水股份有限公司(含高雄市)' => [
+                'population_range' => [17000000, 19514077], // 行政區域人數範圍
+                'percentage_range' => [90.0, 94.9], // 供水普及率範圍
+            ],
+            '第一區管理處' => [
+                'population_range' => [876188, 922903], // 管轄區域人口
+                'percentage_range' => [92.15, 93.9],
+            ],
+            '第二區管理處' => [
+                'population_range' => [2022804, 2437255],
+                'percentage_range' => [93.71, 97.8],
+            ],
+            '第三區管理處' => [
+                'population_range' => [1362672, 1565067],
+                'percentage_range' => [81.93, 92.1],
+            ],
+            '第四區管理處' => [
+                'population_range' => [3167229, 3338275],
+                'percentage_range' => [88.79, 94.4],
+            ],
+            '第五區管理處' => [
+                'population_range' => [1407612, 1554695], // 修正人口範圍
+                'percentage_range' => [92.99, 95.17],
+            ],
+            '第六區管理處' => [
+                'population_range' => [1862440, 1866307],
+                'percentage_range' => [98.62, 99.0],
+            ],
+            '第七區管理處' => [
+                'population_range' => [2843186, 3743627], // 修正人口範圍
+                'percentage_range' => [82.85, 96.77],
+            ],
+            '第八區管理處' => [
+                'population_range' => [449890, 460426],
+                'percentage_range' => [91.15, 95.85],
+            ],
+            '第九區管理處' => [
+                'population_range' => [317489, 344087],
+                'percentage_range' => [82.55, 90.14],
+            ],
+            '第十區管理處' => [
+                'population_range' => [211544, 235957],
+                'percentage_range' => [77.62, 85.91],
+            ],
+            '第十一區管理處' => [
+                'population_range' => [1239048, 1288658],
+                'percentage_range' => [93.49, 95.27],
+            ],
+            '第十二區管理處' => [
+                'population_range' => [1990195, 2124371],
+                'percentage_range' => [98.86, 99.23],
+            ],
+            '臺北自來水事業處' => [
+                'population_range' => [3748177, 3856621],
+                'percentage_range' => [99.51, 99.6],
+            ],
+            '金門自來水廠' => [
+                'population_range' => [76491, 144149],
+                'percentage_range' => [94.46, 94.55],
+            ],
+            '連江縣自來水廠' => [
+                'population_range' => [9814, 14039],
+                'percentage_range' => [86.72, 94.41], // 修正百分比範圍
+            ],
+        ];
+
+  
+        $startDate = Carbon::parse('2006-12-31T00:00:00');
+        $endDate = Carbon::parse('2023-12-31T00:00:00');
+        $interval = 6; // 每六個月更新一次
+        $groupSize = 16; // 每組資料包含16筆
+        $currentDate = clone $startDate; // 使用副本避免修改原始 $startDate
+        
+        // 定義機構池
+        $unitsPool = array_keys($executingUnits);
+        
+ 
+
+while ($currentDate <= $endDate) {
+    $selectedUnits = [];
+    
+    // 隨機選擇16個機構，確保不會有重複機構
+    while (count($selectedUnits) < $groupSize) {
+        $randomUnit = $unitsPool[array_rand($unitsPool)];
+        if (!in_array($randomUnit, $selectedUnits)) {
+            $selectedUnits[] = $randomUnit;
+        }
+    }
+
+        foreach ($selectedUnits  as $unitKey ) {
+              
+                $unit = $executingUnits[$unitKey];
+           
+                $populationInServedArea = rand($unit['population_range'][0], $unit['population_range'][1]);
+                $percentageOfPopulationServed = mt_rand($unit['percentage_range'][0] * 100, $unit['percentage_range'][1] * 100) / 100;
+                $actualPopulationServed = round($populationInServedArea * ($percentageOfPopulationServed / 100));
+
+                if ($actualPopulationServed > 2147483647) {
+                    $actualPopulationServed = 2147483647;  
+                }
+                // 供水普及率計算
+                $percentageOfPopulationServed = ($actualPopulationServed / $populationInServedArea) * 100;
+
+                // 備註隨機生成
+                $remarks = "無";
+
+                // 每個月的間隔
+                $dateTime = $currentDate->toDateTimeString();
+                
+                // 插入資料到資料庫
+                DB::table('water_supply_statistics')->insert([
+                    'ActualPopulationServed' => $actualPopulationServed,
+                    'DateTime' => $dateTime,
+                  'ExecutingUnit' => $unitKey, 
+                    'PercentageOfPopulationServed' => round($percentageOfPopulationServed, 2), // 保留2位小數
+                    'PopulationInServedArea' => $populationInServedArea,
+                    'Remarks' => $remarks,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+                ]);
+            }
+            $currentDate->addMonths($interval);
+        }
+    }
+     /**
+     * Generate a random string of specified length
+     *
+     * @param int $length
+     * @return string
+     */
+    private function generateRandomString($length = 10)
+    {
+        $characters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+        return $randomString;
+    }
+}
+    
 /*
           在這裡插入數據
           DB::table('water_supply_statistics')->insert([
@@ -118,5 +262,5 @@ class water_supply_statisticsTableSeeder extends Seeder
             ['ActualPopulationServed' => '826691', 'DateTime' => '2009-12-31 00:00:00', 'ExecutingUnit' => '第一區管理處', 'PercentageOfPopulationServed' => 92.49, 'PopulationInServedArea' => 893828, 'Remarks' => '無'],
 //100
         ]);*/
-    }
-}
+    
+

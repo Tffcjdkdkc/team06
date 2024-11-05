@@ -16,11 +16,11 @@ class CreateCleanWaterTable extends Migration
 {
     Schema::create('water_supply_statistics', function (Blueprint $table) {
         $table->id();
-        $table->decimal('ActualPopulationServed')->comment('實際供水人數');
+        $table->bigInteger('ActualPopulationServed')->comment('實際供水人數');
         $table->string('DateTime', 255)->comment('統計日期時間');
         $table->string('ExecutingUnit', 255)->comment('機構別');
         $table->decimal('PercentageOfPopulationServed', 5, 2)->comment('供水普及率');
-        $table->decimal('PopulationInServedArea')->comment('行政區域人數');
+        $table->bigInteger('PopulationInServedArea')->comment('行政區域人數');
         $table->string('Remarks', 255)->nullable()->comment('備註');
         $table->timestamps();
     });
