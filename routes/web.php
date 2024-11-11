@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PopulationsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,11 +22,7 @@ Route::get(
     }
 );
 
-Route::get(
-     '/sdgs',
-     function () 
-    {
-         return view('intro_sdgs');
-    }
-);
+Route::get('populations',  [PopulationsController::class, 'index']);
+
+
  
