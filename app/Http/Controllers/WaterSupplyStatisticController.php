@@ -1,20 +1,26 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\WaterSupplyStatistic;
 
+use App\Models\WaterSupplyStatistic;
 use Illuminate\Http\Request;
 
 class WaterSupplyStatisticController extends Controller
 {
-    public function index()
+    public function water(Request $request)
     {
-        // 使用 Eloquent 查詢資料
-        $statistics = WaterSupplyStatistic::all(); // 取得所有資料
+        // 基本查詢：抓取所有資料
+        $statistics = WaterSupplyStatistic::query();
 
-        // 可以加上排序、篩選等條件
-        // $statistics = WaterSupplyStatistic::orderBy('DateTime', 'desc')->get();
+        // 如果有查詢條件，根據機構別過濾
+        if ($request->has('ExecutingUnit') && $request->ExecutingUnit != '') {
+            $statistics = $statistics->where('ExecutingUnit', 'like', '%' . $request->ExecutingUnit . '%');
+        }
 
-        return view('water_supply_statistics.index', compact('statistics'));
+        // 執行查詢並取得結果
+        $statistics = $statistics->paginate(10);
+
+        // 返回視圖，並將統計資料傳遞給視圖
+        return view('water', ['statistics' => $statistics]);
     }
 }
