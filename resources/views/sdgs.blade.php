@@ -41,33 +41,33 @@
         }
 
         .goal {
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s, transform 0.2s;
-}
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            transition: background-color 0.3s, transform 0.2s;
+        }
 
-.goal:hover {
-    background-color: #f1f1f1;
-    border: 1px solid #ccc;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transform: scale(1.03);
-}
+        .goal:hover {
+           background-color: #f1f1f1;
+           border: 1px solid #ccc;
+           box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+           transform: scale(1.03);
+        }
         .goal-number {
-            font-size: 30px;
-            font-weight: bold;
-            color: #025510;
-            margin-right: 15px;
+           font-size: 30px;
+           font-weight: bold;
+           color: #025510;
+           margin-right: 15px;
         }
         .goal img {
-    width: 100px; /* 設置圖像最大寬度 */
-    height: auto;
-    margin-right: 15px;
-}
+           width: 100px; /* 設置圖像最大寬度 */
+           height: auto;
+           margin-right: 15px;
+        }
 
         .goal h3 {
             margin: 0;

@@ -6,49 +6,109 @@
     <title>水供應統計資料</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-
-      
     <style>
-        /* 自訂分頁樣式 */
-        .pagination .page-link {
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .card {
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            background: white;
+        }
+
+        h1 {
             color: #007bff;
-            border: 1px solid #007bff;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        /* 查詢表單美化 */
+        .form-group {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
             font-size: 1.1rem;
+            color: #333;
+            margin-right: 15px;
+        }
+
+        .form-group input {
+            max-width: 250px;
+            width: 100%;
+            border-radius: 30px;
+            padding: 10px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(24, 27, 233, 0.5);
+        }
+
+        .form-group button {
+            border-radius: 30px;
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #ca2f70;
+        }
+
+        /* 查詢結果 */
+        .results {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+            color: #555;
+        }
+
+        .table {
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+        .table th, .table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+        .pagination .page-link {
+            border-radius: 20px;
+            padding: 8px 16px;
+            color: #007bff;
+        }
+        .pagination .page-item.disabled .page-link {
+            color: #ccc; /* 禁用的頁碼顯示灰色 */
         }
 
         .pagination .page-item.active .page-link {
             background-color: #007bff;
+            border-color: #007bff;
             color: white;
-            border: 1px solid #007bff;
         }
-
-        .pagination .page-link:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
-        }
-
-        .pagination .disabled .page-link {
-            color: #6c757d;
-            border-color: #ddd;
-        }
-
-        .page-query-box {
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-        }
-
-        .page-query-box select {
-            width: 100px;
-            margin-right: 10px;
-        }
-
-        /* 資料來源樣式 */
         footer {
             background-color: #f8f9fa;
-            padding: 10px 0;
+            padding: 15px 0;
             text-align: center;
-            margin-top: 30px;
+            margin-top: 40px;
         }
 
         footer a {
@@ -59,32 +119,53 @@
         footer a:hover {
             text-decoration: underline;
         }
+        .page-query-box {
+            display: flex;  /* 設置為 flexbox 使元素排列在一行 */
+            justify-content: space-between;  /* 使元素左右對齊 */
+            align-items: center;  /* 垂直居中對齊 */
+            margin-top: 10px;  /* 可以調整間距 */
+        }
+
+        .page-query-box label {
+            margin-right: 10px;  /* 為 label 和 select 之間添加間距 */
+        }
+
+        .page-query-box select {
+            font-size: 0.9rem;  /* 設置字體大小 */
+            border-radius: 30px;
+            padding: 5px 10px;
+            border: 1px solid #ccc;
+        }   
+        .pagination {
+            margin-bottom: 0; /* 取消底部空間，讓分頁區塊更加緊湊 */
+        }
+
     </style>
 </head>
 <body>
 
 <div class="container mt-5" style="position: relative;">
         <!-- 右上角的主頁連結 -->
-        <a href="{{ url('/sdgs') }}" class="homepage-link">
+    <a href="{{ url('/sdgs') }}" class="homepage-link">
             <i class="fas fa-home"></i> 可持續發展目標SDGs
-        </a>
-    <div class="card">
-        <h1 class="text-center mb-4">自來水供水普及率</h1>
-
-        <!-- 查詢表單 -->
-        <form method="GET" action="{{ url('/water') }}">
-            <div class="form-group">
-                <label for="ExecutingUnit">查詢機構別：
-                    <br>
-                    半年報；按機構別(台灣自來水公司(一至十二區管理處)、臺北自來水事業處、金門、連江自來水廠)，提供人數計算之自來水供水普及率
-                    </p>
-                </label>
-                <input type="text" class="form-control" id="ExecutingUnit" name="ExecutingUnit" placeholder="輸入機構別名稱" value="{{ request('ExecutingUnit') }}">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">查詢</button>
-        </form>
-
-        <!-- 表格顯示資料 -->
+    </a>
+    <div class="container">
+        <div class="card p-4">
+            <h1 class="text-center">自來水供水普及率查詢</h1>
+    
+            <!-- 查詢表單 -->
+            <form method="GET" action="{{ url('/water') }}" class="text-center">
+                <div class="form-group">
+                    <label for="ExecutingUnit">查詢機構別：</label>
+                    <input type="text" class="form-control" id="ExecutingUnit" name="ExecutingUnit" placeholder="輸入機構別名稱" value="{{ request('ExecutingUnit') }}">
+                    <button type="submit" class="btn btn-primary">查詢</button>
+                </div>
+            </form>
+            <!-- 查詢結果顯示資料筆數 -->
+            @if(request()->has('ExecutingUnit'))
+               <p class="results">共查詢到 {{ $statistics->total() }} 筆資料</p>
+            @endif
+           <!-- 表格顯示資料 -->
         <div class="table-responsive mt-4">
             <table class="table table-bordered">
                 <thead>
@@ -118,8 +199,8 @@
 
         <!-- 分頁 -->
         <div class="mt-3">
-            <nav>
-                <ul class="pagination justify-content-center">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="pagination justify-content-center flex-grow-1">
                     <!-- 第一頁 -->
                     @if ($statistics->onFirstPage())
                         <li class="page-item disabled">
@@ -190,25 +271,29 @@
                             </a>
                         </li>
                     @endif
-        
-
-            <!-- 查詢頁碼 -->
-        <div class="page-query-box d-flex align-items-center ml-3">
-            <form action="{{ url('/water') }}" method="GET" class="form-inline">
-                <label for="page-query" class="mr-2">跳至頁數：</label>
-                <select name="page" class="form-control mr-2" onchange="this.form.submit()">
-                    @for ($page = 1; $page <= $statistics->lastPage(); $page++)
-                        <option value="{{ $page }}" {{ request('page') == $page ? 'selected' : '' }}>
-                            第 {{ $page }} 
-                        </option>
-                    @endfor
-                </select>
-            </form>
+                </ul>
+                <!-- 跳至頁數 -->
+                <div class="page-query-box text-center mt-4">
+                    <form action="{{ url('/water') }}" method="GET">
+                        <label for="page-query" class="mr-2">跳至頁數：</label>
+                        <select name="page" class="form-control d-inline-block" onchange="this.form.submit()">
+                            @for ($page = 1; $page <= $statistics->lastPage(); $page++)
+                                <option value="{{ $page }}" {{ request('page') == $page ? 'selected' : '' }}>
+                                    第 {{ $page }}
+                                </option>
+                            @endfor
+                        </select>
+                    </form>
+                </div>
+            </div>
         </div>
-            
-           
-        </ul> 
-   </nav>
-   <footer>
+ 
+               
+
+        
+<footer>
     <p>資料來源: <a href="https://data.gov.tw/dataset/8989" target="_blank">https://data.gov.tw/dataset/8989</a></p>
 </footer>
+
+</body>
+</html>
