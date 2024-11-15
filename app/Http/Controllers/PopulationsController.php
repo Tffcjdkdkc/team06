@@ -14,8 +14,9 @@ class PopulationsController extends Controller
      */
     public function index()
     {
-        $populations = Population::all();
+        $populations = Population::all();       
         return view('populations.index', compact('populations'));
+     
     }
 
     /**
@@ -36,7 +37,7 @@ class PopulationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      //
     }
 
     /**
@@ -81,6 +82,11 @@ class PopulationsController extends Controller
      */
     public function destroy($id)
     {
-        //
+       // 
+    
+
+   
+
+    
     }
 }

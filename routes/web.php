@@ -23,16 +23,19 @@ Route::get(
     }
 );
 
-Route::get(
 
-    '/sdg06s', 
-    function () 
-    {
-        return view('sdg06.sdg06s');
-    }
-);
 
-Route::get('populations',  [PopulationsController::class, 'index']);
+
+Route::get('populations', [PopulationsController::class, 'index']);
+
+
+
+
+
+
+
+
+
 
 
 

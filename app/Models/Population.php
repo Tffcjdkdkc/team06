@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Population extends Model
 {
+
     use HasFactory;
 
     protected $table = "water_service_populations";
