@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>水供應統計資料</title>
+    <link type="image/png" rel="icon" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgBAMAAACBVGfHAAAALVBMVEUmveJny+jJ6vb////f8/mH1OxVx+b1+/295vSw4vLq9/tAwuTU7/ej3fB40OoWp3LjAAAAVElEQVR4AWMYUMCobBKAIpBubGyKItBsNNkIRWCxNYs5ioCxAY8xmgCQwC9gYXwaVcDY2BZVwO6xCZoZzMaUCiy23myO5jllI3TvG6IFkNGDAY0hAIVkENcDVJn9AAAAAElFTkSuQmCC">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
     <style>
+
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7fc;
@@ -16,6 +19,7 @@
 
         .container {
             margin-top: 50px;
+            position: relative;
         }
 
         .card {
@@ -140,10 +144,11 @@
             margin-bottom: 0; /* 取消底部空間，讓分頁區塊更加緊湊 */
         }
 
-    </style>
+</style>
+
 </head>
 <body>
-
+   
 <div class="container mt-5" style="position: relative;">
         <!-- 右上角的主頁連結 -->
     <a href="{{ url('/sdgs') }}" class="homepage-link">
@@ -197,84 +202,87 @@
             </table>
         </div>
 
+
+
         <!-- 分頁 -->
         <div class="mt-3">
             <div class="d-flex justify-content-between align-items-center">
                 <ul class="pagination justify-content-center flex-grow-1">
                     <!-- 第一頁 -->
                     @if ($statistics->onFirstPage())
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fas fa-fast-backward"></i></span>
-                        </li>
-                    @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $statistics->url(1) }}" aria-label="First">
-                                <i class="fas fa-fast-backward"></i>
-                            </a>
-                        </li>
-                    @endif
+                            <li class="page-item disabled">
+                                <span class="page-link"><i class="fas fa-fast-backward"></i></span>
+                            </li>
+                        @else
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $statistics->url(1) }}&ExecutingUnit={{ request('ExecutingUnit') }}" aria-label="First">
+                                    <i class="fas fa-fast-backward"></i>
+                                </a>
+                            </li>
+                        @endif
 
                     <!-- 上一頁 -->
                     @if ($statistics->onFirstPage())
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fas fa-arrow-left"></i></span>
-                        </li>
-                    @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $statistics->previousPageUrl() }}" aria-label="Previous">
-                                <i class="fas fa-arrow-left"></i>
-                            </a>
-                        </li>
-                    @endif
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="fas fa-arrow-left"></i></span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $statistics->previousPageUrl() }}&ExecutingUnit={{ request('ExecutingUnit') }}" aria-label="Previous">
+                            <i class="fas fa-arrow-left"></i>
+                        </a>
+                    </li>
+                @endif
 
-                    <!-- 顯示頁碼範圍 -->
+                                    <!-- 顯示頁碼範圍 -->
                     @php
-                        $currentPage = $statistics->currentPage();
-                        $startPage = max(1, $currentPage - 2);  // 頁碼範圍的開始頁，確保最小值為 1
-                        $endPage = min($startPage + 4, $statistics->lastPage());  // 頁碼範圍的結束頁，確保不超過最大頁數
+                    $currentPage = $statistics->currentPage();
+                    $startPage = max(1, $currentPage - 2);  // 頁碼範圍的開始頁，確保最小值為 1
+                    $endPage = min($startPage + 4, $statistics->lastPage());  // 頁碼範圍的結束頁，確保不超過最大頁數
 
-                        // 如果頁碼範圍的結束頁小於總頁數，則調整起始頁
-                        if ($endPage - $startPage < 4) {
-                            $startPage = max(1, $endPage - 4);
-                        }
+                    // 如果頁碼範圍的結束頁小於總頁數，則調整起始頁
+                    if ($endPage - $startPage < 4) {
+                        $startPage = max(1, $endPage - 4);
+                    }
                     @endphp
 
                     @for ($page = $startPage; $page <= $endPage; $page++)
-                        <li class="page-item {{ $page == $currentPage ? 'active' : '' }}">
-                            <a class="page-link" href="{{ $statistics->url($page) }}">{{ $page }}</a>
-                        </li>
+                    <li class="page-item {{ $page == $currentPage ? 'active' : '' }}">
+                        <a class="page-link" href="{{ $statistics->url($page) }}&ExecutingUnit={{ request('ExecutingUnit') }}">
+                            {{ $page }}
+                        </a>
+                    </li>
                     @endfor
-
-
                     <!-- 下一頁 -->
                     @if ($statistics->hasMorePages())
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $statistics->nextPageUrl() }}" aria-label="Next">
-                                <i class="fas fa-arrow-right"></i>
-                            </a>
-                        </li>
-                    @else
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fas fa-arrow-right"></i></span>
-                        </li>
-                    @endif
+                            <li class="page-item">
+                                <a class="page-link" href="{{ $statistics->nextPageUrl() }}&ExecutingUnit={{ request('ExecutingUnit') }}" aria-label="Next">
+                                    <i class="fas fa-arrow-right"></i>
+                                </a>
+                            </li>
+                        @else
+                            <li class="page-item disabled">
+                                <span class="page-link"><i class="fas fa-arrow-right"></i></span>
+                            </li>
+                        @endif
 
                     <!-- 最後一頁 -->
                     @if ($statistics->currentPage() == $statistics->lastPage())
-                        <li class="page-item disabled">
-                            <span class="page-link"><i class="fas fa-fast-forward"></i></span>
-                        </li>
-                    @else
-                        <li class="page-item">
-                            <a class="page-link" href="{{ $statistics->url($statistics->lastPage()) }}" aria-label="Last">
-                                <i class="fas fa-fast-forward"></i>
-                            </a>
-                        </li>
-                    @endif
-                </ul>
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="fas fa-fast-forward"></i></span>
+                    </li>
+                @else
+                    <li class="page-item">
+                        <a class="page-link" href="{{ $statistics->url($statistics->lastPage()) }}&ExecutingUnit={{ request('ExecutingUnit') }}" aria-label="Last">
+                            <i class="fas fa-fast-forward"></i>
+                        </a>
+                    </li>
+                @endif
+            </ul>
                 <!-- 跳至頁數 -->
                 <div class="page-query-box text-center mt-4">
                     <form action="{{ url('/water') }}" method="GET">
+                        <input type="hidden" name="ExecutingUnit" value="{{ request('ExecutingUnit') }}">
                         <label for="page-query" class="mr-2">跳至頁數：</label>
                         <select name="page" class="form-control d-inline-block" onchange="this.form.submit()">
                             @for ($page = 1; $page <= $statistics->lastPage(); $page++)
@@ -287,7 +295,7 @@
                 </div>
             </div>
         </div>
- 
+       
                
 
         
@@ -295,5 +303,8 @@
     <p>資料來源: <a href="https://data.gov.tw/dataset/8989" target="_blank">https://data.gov.tw/dataset/8989</a></p>
 </footer>
 
+
+
 </body>
+
 </html>
