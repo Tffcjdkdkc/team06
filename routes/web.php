@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WaterSupplyStatisticController;
+use App\Http\Controllers\SDGController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,6 @@ use App\Http\Controllers\WaterSupplyStatisticController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/sdgs', function () {
-    return view('sdgs');
-});
+Route::get('/sdgs', [SDGController::class, 'index']);
 
 Route::get('/water', [WaterSupplyStatisticController::class, 'water']);
