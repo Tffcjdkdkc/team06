@@ -21,6 +21,7 @@ class WaterSupplyStatisticController extends Controller
         $statistics = $statistics->paginate(10);
 
         // 返回視圖，並將統計資料傳遞給視圖
-        return view('water', ['statistics' => $statistics]);
+        return view('water.water', compact('statistics'));
+
     }
 }
