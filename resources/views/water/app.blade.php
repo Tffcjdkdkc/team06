@@ -1,4 +1,4 @@
-<!-- resources/views/sdgs/app.blade.php -->
+<!-- resources/views/water/app.blade.php -->
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>

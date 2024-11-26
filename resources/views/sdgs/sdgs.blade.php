@@ -1,10 +1,11 @@
 <!-- resources/views/sdgs/sdgs.blade.php -->
 @extends('sdgs.app') <!-- 擴展自 sdgs/app.blade.php 這個佈局 -->
+@extends('sdgs.body') 
+
 
 @section('page_title', '可持續發展目標介紹') <!-- 頁面標題 -->
 
 @section('content')
-    <p>自來水供水普及率 <a href="http://127.0.0.1:8000/water" target="_blank">查詢</a></p>
 
     <h2>什麼是SDGs？</h2>
     <p>聯合國於西元 2015 年通過 2030 永續發展議程，提出 17 項全球邁向永續發展的核心目標，藉此引領政府、地方政府、企業、公民團體等行動者，在未來 15 年間的決策、投資與行動方向，共同創建「每個國家都實現持久、包容和永續的經濟增長和每個人都有合宜工作」的世界。</p>

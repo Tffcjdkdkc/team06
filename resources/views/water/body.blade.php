@@ -12,14 +12,14 @@
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #f4f7fc;
-            margin: 0;
+            margin: 0; 
             padding: 20px;
         }
 
         .container {
             margin-top: 5px;
             position: relative;
-            padding: 2px; /* 為容器添加內邊距 */
+            padding: 20px; /* 為容器添加內邊距 */
         }
 
         .card {
@@ -32,7 +32,7 @@
         h1 {
             color: #007bff;
             font-weight: 600;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
         }
 
         /* 查詢表單美化 */
@@ -145,21 +145,26 @@
             margin-bottom: 0; /* 取消底部空間，讓分頁區塊更加緊湊 */
         }
         .homepage-link {
-    position: fixed; /* 固定在屏幕上 */
-    top: 10px; /* 距离顶部 10px */
-    right: 5px; /* 距离右边 10px */
-    background-color: rgba(0, 123, 255, 0.7); /* 背景颜色，可根据需要调整 */
-    color: white; /* 字体颜色 */
-    padding: 6px 12px;
-    border-radius: 30px; /* 圆角效果 */
-    text-decoration: none; /* 去除默认下划线 */
-    font-size: 0.8rem;
-}
+            position: fixed; /* 固定在屏幕上 */
+            top: 10px; /* 距离顶部 10px */
+            right: 5px; /* 距离右边 5px */
+            background-color: rgba(42, 108, 173, 0.7); /* 背景颜色，可根据需要调整 */
+            color: white; /* 字体颜色 */
+            padding: 6px 12px;
+            border-radius: 30px; /* 圆角效果 */
+            text-decoration: none; /* 去除默认下划线 */
+            font-size: 0.8rem; /* 调整字体大小 */
+            display: flex; /* 使文字和图标对齐 */
+            align-items: center; /* 垂直居中 */
+        }
 
-.homepage-link:hover {
-    background-color: rgb(172, 28, 116); /* 悬停时的背景颜色 */
-}
+        .homepage-link i {
+            margin-right: 8px; /* 图标与文字之间的间距 */
+        }
 
+        .homepage-link:hover {
+            background-color: rgb(172, 28, 116); /* 悬停时的背景颜色 */
+        }
     </style>
 </head>
 <body>
