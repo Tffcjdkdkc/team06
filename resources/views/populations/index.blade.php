@@ -37,20 +37,29 @@
             margin-top: 20px;
             color: #5bfa06;
         }
+         /* 圖片樣式 */
+        img.centered {
+                display: block;
+                margin: 0 auto;
+                width: 50%; /* 調整寬度 */
+                height: auto; /* 等比例縮放 */
+            }
         </style>
     </head>
     <body>
-        <h1 class="page-title"><a href="https://data.gov.tw/dataset/8989">自來水供水普及率<a></h1>
+        <!-- 圖片部分 -->
+        <img src="http://localhost/team06/image/sdgs06_longer.png" class="centered" alt="SDG 06 Image">
+        <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
+        <h1 class="page-title">自來水供水普及率</h1>
         <h2>以下是隨機生成資料:</h2>
 
-        
 
 
         
+        
 
         
-        </form>
-
+        
             <table>
                 <thead>
                     <tr>
@@ -73,21 +82,26 @@
                             <td>{{ $population->percentage_of_population_served }}</td>
                             <td>{{ $population->population_in_served_area }}</td>
                             <td>{{ $population->remarks }}</td>
-                            
+                        </tr>
+                    
+                        
                            
-                    @endforeach     
-                </tbody>
-            </table>
-            <footer>
-                <p>參考網址:<a href="https://www.water.gov.tw/ch/Contents?nodeId=1304" target="_blank"><mark>自來水公司網站<mark></a></p>
-                <p>參考網址:<a href="https://sdgs.un.org/zh/goals/goal6" target="_blank"><mark>聯合國 SDG06 官方網站<mark></a></p>
-                <p>參考網址:<a href="https://data.gov.tw/dataset/8989" target="_blank"><mark>自來水供水普及率<mark></a></p>
-            </footer>
-            <footer>
-                <h1>珍惜水資源|節約用水 </h1>
-                <p>&copy; team06 sdg06</p>
-            </footer>
-       
-        
-    </body>
-</html>
+                        @endforeach     
+                    </tbody>
+                </table>
+                <h1><mark>自來水供水普及率與SDGS</mark></h1>
+                <h2>自來水供水普及率是實現 SDG 6（清潔飲水和衛生設施） 的關鍵，因為它直接影響安全飲用水的可得性、衛生條件和健康水平。提高供水普及率能減少水傳疾病、促進基礎設施建設，並縮小城鄉和貧富差距，同時支持水資源的可持續管理，與其他可持續發展目標（如健康、城市建設和氣候行動）相輔相成。</h2>
+                <footer>
+                    <p>參考網址:<a href="https://www.water.gov.tw/ch/Contents?nodeId=1304" target="_blank"><mark>自來水公司網站<mark></a></p>
+                    <p>參考網址:<a href="https://sdgs.un.org/zh/goals/goal6" target="_blank"><mark>聯合國 SDG06 官方網站<mark></a></p>
+                    <p>參考網址:<a href="https://data.gov.tw/dataset/8989" target="_blank"><mark>自來水供水普及率<mark></a></p>
+                </footer>
+                <footer>
+                    <h1>珍惜水資源|節約用水</h1>
+                    <p>&copy; team06 sdg06</p>
+                </footer>
+           
+            
+        </body>
+    </html>
+    

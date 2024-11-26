@@ -2,10 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
 use App\Models\Population;
 use Illuminate\Http\Request;
-
 
 class PopulationsController extends Controller
 {
@@ -16,13 +14,13 @@ class PopulationsController extends Controller
      */
     public function index()
     {
-        
-        $populations = population::all();       
+
+
+        $populations = population::all();
         return view('populations.index', compact('populations'));
-        
-        
-        
-        //return view('populations.index');
+
+         //return view('populations.index');
+
     }
 
     /**
