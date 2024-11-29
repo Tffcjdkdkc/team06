@@ -1,6 +1,6 @@
 @extends('app')
 
-@section('title', '自來水供水普及率')
+@section('title', 'team06 | 自來水供水普及率')
 
 @section('content')
     <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
@@ -33,6 +33,13 @@
                     <td>{{ $population->remarks }}</td>
                     <td><a href="{{ route('populations.show', ['id' => $population->id]) }}">顯示</a></td>
                     <td><a href="{{ route('populations.edit', ['id' => $population->id]) }}">編輯</a></td>
+                    <td>
+                        <form action="{{ url('/populations/delete', ['id' => $population->id]) }}" method="post">
+                            <input class="btn btn-default" type="submit" value="刪除" />
+                            @method('delete')
+                            @csrf
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

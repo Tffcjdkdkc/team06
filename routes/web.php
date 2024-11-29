@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/sdgs', function () {
     return view('sdgs');
-});
+})->name('sdgs.index');
 
 
 
@@ -30,6 +30,7 @@ Route::get('/sdgs', function () {
 Route::get('populations', [PopulationsController::class, 'index'])->name('populations.index');
 Route::get('populations/{id}', [PopulationsController::class, 'show'])->where('id', '[0-9]+')->name('populations.show');
 Route::get('populations/{id}/edit', [PopulationsController::class, 'edit'])->where('id', '[0-9]+')->name('populations.edit');
+Route::delete('populations/delete/{id}', [PopulationsController::class, 'destroy'])->where('id', '[0-9]+')->name('populations.destroy');
 
 
 

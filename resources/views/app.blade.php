@@ -5,14 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title')</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
+    <style>  
         body {
-            font-family: 'Nunito';
+            background-color: #d1e8e4; /* 淡藍色 */
+            font-family: Arial, sans-serif;
         }
-        /* 可以根據需要擴展其他CSS */
+        h1.page-title {
+        background-color: #ff6600; /* 設定你想要的顏色，例如橙色 */
+        text-align: center;
+        font-size: 28px;
+        margin-top: 20px;
+        }
+        h2  {
+        text-align: center;
+        color: rgb(245, 2, 237);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        footer {
+        background-color: #007bff;
+        text-align: center;
+        margin-top: 20px;
+        color: #5bfa06;
+    }
+     /* 圖片樣式 */
+    img.centered {
+            display: block;
+            margin: 0 auto;
+            width: 50%; /* 調整寬度 */
+            height: auto; /* 等比例縮放 */
+        }
     </style>
 </head>
 <body>
+
     <div class="relative flex items-top justify-center min-h-screen bg-gray-100">
         @include('header') <!-- 引入 header.blade.php -->
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
