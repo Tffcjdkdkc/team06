@@ -1,7 +1,7 @@
 <!-- resources/views/water.blade.php -->
-@extends('water.app') <!-- 擴展自 water/app.blade.php 這個佈局 -->
+@extends('water.body') <!-- 擴展自 water/app.blade.php 這個佈局 -->
 
-@extends('water.body') 
+@extends('app') 
 
 @section('content')
    

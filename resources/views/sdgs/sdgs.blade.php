@@ -1,9 +1,7 @@
 <!-- resources/views/sdgs/sdgs.blade.php -->
-@extends('sdgs.app') <!-- 擴展自 sdgs/app.blade.php 這個佈局 -->
-@extends('sdgs.body') 
+@extends('sdgs.body') <!-- 擴展自 sdgs/app.blade.php 這個佈局 -->
+@extends('app') 
 
-
-@section('page_title', '可持續發展目標介紹') <!-- 頁面標題 -->
 
 @section('content')
 
