@@ -16,7 +16,7 @@ class PopulationsController extends Controller
     {
 
 
-        $populations = population::all();
+        $populations = Population::all();
         return view('populations.index', compact('populations'));
 
          //return view('populations.index');
@@ -53,6 +53,8 @@ class PopulationsController extends Controller
     public function show($id)
     {
         //
+        $population = Population::findOrFail($id);
+        return view('populations.show')->with('population', $population);
     }
 
     /**
