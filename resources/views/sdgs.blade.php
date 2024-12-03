@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>聯合國永續發展目標 (SDGs)</title>
+
+    <!-- 加入 Favicon -->
+    <link rel="icon" href="http://localhost/team06/image/sdgs.png" type="image/png">
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -211,3 +215,4 @@
 
 </body>
 </html>
+

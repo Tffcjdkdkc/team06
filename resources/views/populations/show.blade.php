@@ -55,7 +55,6 @@
         }
     </style>
 
-    <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
     <h1><mark><a href="http://127.0.0.1:8000/populations">返回首頁</a></mark></h1>
     <h1 class="page-title">自來水供水普及率</h1>
     <h2>以下是隨機生成資料:</h2>
@@ -70,7 +69,4 @@
         <div><strong>供水區域人口:</strong> {{ $population->population_in_served_area }}</div>
         <div><strong>備註:</strong> {{ $population->remarks }}</div>
     </div>
-
-    <h1><mark>自來水供水普及率與SDGS</mark></h1>
-    <h2>自來水供水普及率是實現 SDG 6（清潔飲水和衛生設施） 的關鍵，因為它直接影響安全飲用水的可得性、衛生條件和健康水平。</h2>
 @endsection
