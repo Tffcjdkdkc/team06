@@ -6,10 +6,10 @@
     <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
     <h1 class="page-title">自來水供水普及率</h1>
     <h2>以下是隨機生成資料:</h2>
+    <a href={{ route ('populations.create')}} > 新增自來水供水普及率資料 </a>
     <table>
         <thead>
             <tr>
-                <th>編號</th>
                 <th>實際供水人口</th>
                 <th>日期時間</th>
                 <th>執行單位</th>
@@ -24,7 +24,6 @@
         <tbody>
             @foreach ($populations as $population)
                 <tr>
-                    <td>{{ $population->id }}</td>
                     <td>{{ $population->actual_population_served }}</td>
                     <td>{{ $population->date_time }}</td>
                     <td>{{ $population->executing_unit }}</td>

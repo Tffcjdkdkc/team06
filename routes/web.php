@@ -25,8 +25,8 @@ Route::get('/sdgs', function () {
 
 
 
-
-
+Route::post('populations/store', [PopulationsController::class, 'store'])->name('populations.store');
+Route::get('populations/create', [PopulationsController::class, 'create'])->name('populations.create');
 Route::get('populations', [PopulationsController::class, 'index'])->name('populations.index');
 Route::get('populations/{id}', [PopulationsController::class, 'show'])->where('id', '[0-9]+')->name('populations.show');
 Route::get('populations/{id}/edit', [PopulationsController::class, 'edit'])->where('id', '[0-9]+')->name('populations.edit');

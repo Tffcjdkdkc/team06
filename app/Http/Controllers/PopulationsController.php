@@ -30,7 +30,8 @@ class PopulationsController extends Controller
      */
     public function create()
     {
-        //
+        return view("populations.create");
+       
     }
 
     /**
@@ -41,7 +42,20 @@ class PopulationsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 驗證表單資料
+        $data = $request->only([
+        'actual_population_served',
+        'date_time' ,
+        'executing_unit' ,
+        'percentage_of_population_served' ,
+        'population_in_served_area' , 
+        'remarks' ,
+    ]);
+
+    
+    $population = Population::create($data);
+
+    return redirect('populations');
     }
 
     /**
