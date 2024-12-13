@@ -32,6 +32,7 @@
                             <th>供水普及率</th>
                             <th>行政區域人數</th>
                             <th>備註</th>
+                            <th>編輯或刪除</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,6 +44,17 @@
                                 <td>{{ $statistic->PercentageOfPopulationServed }}%</td>
                                 <td>{{ $statistic->PopulationInServedArea }}</td>
                                 <td>{{ $statistic->Remarks ?? '無' }}</td>
+                                <td>
+                             <!-- 編輯按鈕 -->
+                             <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
+                             <!-- 刪除按鈕 -->
+                             <form action="{{ route('WaterSupplyStatistic.destroy', $statistic->id) }}" method="POST" style="display:inline;">
+                                 @csrf
+                                 @method('DELETE')
+                                 <button type="submit" class="btn btn-danger">刪除</button>
+                             </form>
+                                    
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -51,7 +63,12 @@
                         @endforelse
                     </tbody>
                 </table>
-          
+                @if(session('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
 
 
 
