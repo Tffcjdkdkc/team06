@@ -36,10 +36,10 @@
 
         h2 {
             font-size: 1.5rem;
-            color: #555;
+            color: #078105;
             margin-top: 20px;
             text-align: center;
-        }
+        } 
 
         a {
             color: #007bff;
@@ -55,9 +55,10 @@
         }
     </style>
 
-    <h2>以下是隨機生成資料:</h2>
+    <h2>顯示表單</h2>
 
     <div class="population-info">
+        <div><strong>編號:</strong> {{ $population->id }}</div>
         <div><strong>實際供水人口:</strong> {{ $population->actual_population_served }}</div>
         <div><strong>日期:</strong> {{ \Carbon\Carbon::parse($population->date_time)->toDateString() }}</div>
         <div><strong>時間:</strong> {{ \Carbon\Carbon::parse($population->date_time)->toTimeString() }}</div>

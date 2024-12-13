@@ -22,7 +22,7 @@
         }
         h2  {
         text-align: center;
-        color: rgb(245, 2, 237);
+        color: rgb(95, 2, 245);
         }
         table {
             width: 100%;

@@ -9,6 +9,7 @@
     <table>
         <thead>
             <tr>
+                <th>編號</th>
                 <th>實際供水人口</th>
                 <th>日期時間</th>
                 <th>執行單位</th>
@@ -17,12 +18,13 @@
                 <th>備註</th>
                 <th>操作1</th>
                 <th>操作2</th>
-                <th>操作3</th>
+                <th>操作3</th>  
             </tr>
         </thead>
         <tbody>
             @foreach ($populations as $population)
                 <tr>
+                    <td>{{ $population->id }}</td>
                     <td>{{ $population->actual_population_served }}</td>
                     <td>{{ $population->date_time }}</td>
                     <td>{{ $population->executing_unit }}</td>

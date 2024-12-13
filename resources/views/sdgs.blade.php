@@ -43,7 +43,7 @@
             display: none; /* 預設隱藏所有目標內容 */
         }
         h1 {
-            color: #09cd10;
+            color: #044e06;
         }
         p {
             color: #f5fbf5;
