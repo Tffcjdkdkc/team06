@@ -55,7 +55,6 @@
         }
     </style>
 
-    <h1 class="page-title"><a href="http://127.0.0.1:8000/populations">自來水供水普及率</a></h1>
     <h2>以下是隨機生成資料:</h2>
 
     <div class="population-info">

@@ -15,10 +15,11 @@ class PopulationsController extends Controller
     public function index()
     {
 
+        
+
 
         $populations = Population::all();
         return view('populations.index')->with('populations', $populations);
-
          //return view('populations.index');
 
     }
@@ -82,7 +83,12 @@ class PopulationsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // 根據 ID 查找對應的 Population 資料
+        $population = Population::findOrFail($id);
+
+        // 返回編輯頁面，並傳遞該資料
+        return view('populations.edit')->with('population', $population);;
+        
     }
 
     /**
@@ -94,7 +100,24 @@ class PopulationsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // 根據 ID 查找對應的 Population 資料
+        $population = Population::findOrFail($id);
+
+        // 驗證表單資料
+        $data = $request->only([
+        'actual_population_served',
+        'date_time',
+        'executing_unit',
+        'percentage_of_population_served',
+        'population_in_served_area',
+        'remarks',
+    ]);
+
+        // 更新該資料
+        $population->update($data);
+
+        // 重定向到資料列表頁面
+        return redirect()->route('populations.index')->with('success', '資料更新成功!');
     }
 
     /**

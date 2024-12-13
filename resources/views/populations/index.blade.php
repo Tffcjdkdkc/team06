@@ -4,9 +4,8 @@
 
 @section('content')
     <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
-    <h1 class="page-title">自來水供水普及率</h1>
     <h2>以下是隨機生成資料:</h2>
-    <a href={{ route ('populations.create')}} > 新增自來水供水普及率資料 </a>
+    <button class="btn btn-primary" onclick="window.location.href='{{ route('populations.create') }}'"><h4>新增自來水供水普及率資料</h4></button>
     <table>
         <thead>
             <tr>
@@ -43,8 +42,7 @@
             @endforeach
         </tbody>
     </table>
-    <h1><mark>自來水供水普及率與SDGS</mark></h1>
-    <h2>自來水供水普及率是實現 SDG 6（清潔飲水和衛生設施） 的關鍵，因為它直接影響安全飲用水的可得性、衛生條件和健康水平。</h2>
+    <h2><mark><a href="http://127.0.0.1:8000/home">返回首頁</a></mark></h2>
 @endsection
 
     

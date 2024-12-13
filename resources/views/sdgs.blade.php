@@ -89,7 +89,8 @@
         <a href="javascript:void(0);" onclick="showGoal('goal17')">目標 17</a>
     </nav>
 </header>
-<h1><mark><a href="http://127.0.0.1:8000/populations">返回首頁</a></mark></h1>
+<h1><mark><a href="http://127.0.0.1:8000/home">返回首頁</a></mark></h1> 
+<h1><mark><a href="http://127.0.0.1:8000/populations">自來水供水普及率</a></mark></h1>
 <section id="goal1">
     <h1>目標 1</h1>
     <h2><a href="https://futurecity.cw.com.tw/article/836">消除貧窮</a></h2>
