@@ -1,12 +1,18 @@
-@extends('app')
-
+@extends('app') 
 @section('title', 'team06 | 自來水供水普及率')
-
 @section('content')
+
+
     <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
+    <h2><mark><a href="http://127.0.0.1:8000/home">返回首頁</a></mark></h2>
     <h2>以下是隨機生成資料:</h2>
     <button class="btn btn-primary" onclick="window.location.href='{{ route('populations.create') }}'"><h4>新增自來水供水普及率資料</h4></button>
-    <table>
+
+    
+    
+      <!-- Search Form -->
+      <h3>執行單位或完整日期時間(自動搜尋):</h3><input type="text" id="searchInput" placeholder="輸入執行單位或日期時間" onkeyup="filterData()" class="form-control mb-3">
+      <table id="populationTable">
         <thead>
             <tr>
                 <th>編號</th>
@@ -44,7 +50,33 @@
             @endforeach
         </tbody>
     </table>
-    <h2><mark><a href="http://127.0.0.1:8000/home">返回首頁</a></mark></h2>
+
+
+    <script>   //執行輸入單位或完整日期時間(自動搜尋)
+        function filterData() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById('populationTable');
+            let tr = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < tr.length; i++) {
+                let tds = tr[i].getElementsByTagName('td');
+                let rowText = '';
+                for (let j = 0; j < tds.length; j++) {
+                    rowText += tds[j].textContent || tds[j].innerText;
+                }
+                
+                // If the row contains the search term, display it
+                if (rowText.toLowerCase().includes(filter)) {
+                    tr[i].style.display = '';
+                } else {
+                    tr[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+
+
 @endsection
 
     
