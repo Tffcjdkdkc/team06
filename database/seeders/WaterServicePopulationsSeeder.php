@@ -35,7 +35,7 @@ class WaterServicePopulationsSeeder extends Seeder
             '臺北自來水事業處',
         ];
 
-        $numberOfRecords = 500;
+        $numberOfRecords = 300;
 
         for ($i = 0; $i < $numberOfRecords; $i++) {
             $populationInServedArea = rand(10000, 5000000); // 隨機生成服務區域人口

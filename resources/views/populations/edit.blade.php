@@ -55,7 +55,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit("更新調查資料", ['class' => 'btn btn-primary form-control']) !!}
+        {!! Form::submit("修改調查資料", ['class' => 'btn btn-primary form-control']) !!}
     </div>
 
     {!! Form::close() !!}

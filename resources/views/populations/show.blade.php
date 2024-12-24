@@ -58,7 +58,6 @@
     <h2>顯示表單</h2>
 
     <div class="population-info">
-        <div><strong>編號:</strong> {{ $population->id }}</div>
         <div><strong>實際供水人口:</strong> {{ $population->actual_population_served }}</div>
         <div><strong>日期:</strong> {{ \Carbon\Carbon::parse($population->date_time)->toDateString() }}</div>
         <div><strong>時間:</strong> {{ \Carbon\Carbon::parse($population->date_time)->toTimeString() }}</div>
