@@ -21,10 +21,14 @@
                 @if(request()->has('ExecutingUnit'))
                 <p class="results">共查詢到 {{ $statistics->total() }} 筆資料</p>
                 @endif
+
+                       <!-- 新增按鈕 -->
+                         <a href="{{ route('WaterSupplyStatistic.create') }}" class="btn btn-success">新增</a>
+
             <!-- 表格顯示資料 -->
             <div class="table-responsive mt-4">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered">    
+                    <thead>   
                         <tr>
                             <th>機構別</th>
                             <th>統計日期時間</th>
@@ -32,7 +36,9 @@
                             <th>供水普及率</th>
                             <th>行政區域人數</th>
                             <th>備註</th>
-                            <th>編輯或刪除</th>
+                            <th>顯示</th>
+                            <th>編輯</th>
+                            <th>刪除</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -44,9 +50,15 @@
                                 <td>{{ $statistic->PercentageOfPopulationServed }}%</td>
                                 <td>{{ $statistic->PopulationInServedArea }}</td>
                                 <td>{{ $statistic->Remarks ?? '無' }}</td>
-                                <td>
-                             <!-- 編輯按鈕 -->
-                             <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
+                             <!-- 顯示按鈕 -->
+                            <td>
+                            <a href="{{ route('WaterSupplyStatistic.show', $statistic->id) }}" class="btn btn-info">顯示</a>
+                            </td>
+                            <td>
+                                <!-- 編輯按鈕 -->
+                                <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
+                               </td> 
+                             <td>
                              <!-- 刪除按鈕 -->
                              <form action="{{ route('WaterSupplyStatistic.destroy', $statistic->id) }}" method="POST" style="display:inline;">
                                  @csrf

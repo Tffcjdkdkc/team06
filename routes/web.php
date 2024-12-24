@@ -37,3 +37,5 @@ Route::get('WaterSupplyStatistic/edit/{id}', [WaterSupplyStatisticController::cl
 
 // 更新資料
 Route::put('WaterSupplyStatistic/update/{id}', [WaterSupplyStatisticController::class, 'update'])->name('WaterSupplyStatistic.update');
+//顯示
+Route::get('water/{id}', [WaterSupplyStatisticController::class, 'show'])->name('WaterSupplyStatistic.show');
