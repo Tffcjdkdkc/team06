@@ -1,5 +1,5 @@
 @extends('water.body')
-
+@extends('app') 
 @section('content')
     <div class="container">
         <h1 class="text-center">新增自來水供水普及率資料</h1>
@@ -8,22 +8,22 @@
             @csrf
 
             <!-- 機構別 -->
-            <div class="form-group">
-                <label for="ExecutingUnit">機構別</label>
-                <input type="text" class="form-control @error('ExecutingUnit') is-invalid @enderror" id="ExecutingUnit" name="ExecutingUnit" placeholder="輸入機構別" value="{{ old('ExecutingUnit') }}" required>
-                @error('ExecutingUnit')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+        <div class="form-group">
+            <label for="ExecutingUnit">機構別</label>
+            <input type="text" class="form-control @error('ExecutingUnit') is-invalid @enderror" id="ExecutingUnit" name="ExecutingUnit" placeholder="輸入機構別" value="{{ old('ExecutingUnit') }}" required>
+            @error('ExecutingUnit')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
-            <!-- 統計日期時間 -->
-            <div class="form-group">
-                <label for="DateTime">統計日期時間</label>
-                <input type="datetime-local" class="form-control @error('DateTime') is-invalid @enderror" id="DateTime" name="DateTime" value="{{ old('DateTime') }}" required>
-                @error('DateTime')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
-            </div>
+        <!-- 統計日期時間 -->
+        <div class="form-group">
+            <label for="DateTime">統計日期時間</label>
+            <input type="datetime-local" class="form-control @error('DateTime') is-invalid @enderror" id="DateTime" name="DateTime" value="{{ old('DateTime') }}" required>
+            @error('DateTime')
+                <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
+        </div>
 
             <!-- 實際供水人數 -->
             <div class="form-group">

@@ -1,6 +1,6 @@
 <!-- resources/views/water/show.blade.php -->
 @extends('water.body') <!-- Assuming this is your layout -->
-
+@extends('app') 
 @section('content')
     <div class="container">
         <h1 class="text-center">水供應統計詳情</h1>

@@ -1,9 +1,10 @@
 <!-- resources/views/water/edit.blade.php -->
 @extends('water.body')
-
+@extends('app') 
 @section('title', '編輯自來水供水普及率資料')
 
 @section('content')
+<div class="container">
     <h1 class="text-center">編輯自來水供水普及率資料</h1>
 
     <form action="{{ route('WaterSupplyStatistic.update', $statistic->id) }}" method="POST">
@@ -42,4 +43,5 @@
 
         <button type="submit" class="btn btn-primary">更新資料</button>
     </form>
+</div>
 @endsection
