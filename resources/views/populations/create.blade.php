@@ -5,6 +5,10 @@
 @section('content')
 
 
+@include('message.list')
+
+
+
 
 
 <h1>新增表單</h1>

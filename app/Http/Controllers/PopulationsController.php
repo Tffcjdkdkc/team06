@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
+
 use App\Models\Population;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\CreatePopulationRequest;
 class PopulationsController extends Controller
 {
     /**
@@ -41,7 +43,7 @@ class PopulationsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePopulationRequest $request)
     {
         // 驗證表單資料
         $data = $request->only([
