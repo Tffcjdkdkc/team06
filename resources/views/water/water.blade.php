@@ -9,14 +9,33 @@
          
                 <h1 class="text-center">自來水供水普及率查詢</h1>
         
-                <!-- 查詢表單 -->
-                <form method="GET" action="{{ url('/water') }}" class="text-center">
-                    <div class="form-group">
-                        <label for="ExecutingUnit">查詢機構別：</label>
-                        <input type="text" class="form-control" id="ExecutingUnit" name="ExecutingUnit" placeholder="輸入機構別名稱" value="{{ request('ExecutingUnit') }}">
-                        <button type="submit" class="btn btn-primary">查詢</button>
-                    </div>
-                </form>
+<!-- 查詢表單 -->
+<form method="GET" action="{{ url('/water') }}" class="text-center">
+    <div class="form-group">
+        <label for="ExecutingUnit">查詢機構別：</label>
+        <select class="form-control form-control-sm @error('ExecutingUnit') is-invalid @enderror" id="ExecutingUnit" name="ExecutingUnit" style="width: 200px;"> <!-- Set the width here -->
+            <option value="" disabled selected>選擇機構別</option>
+            <option value="台灣自來水股份有限公司(含高雄市)" {{ request('ExecutingUnit') == '台灣自來水股份有限公司(含高雄市)' ? 'selected' : '' }}>台灣自來水股份有限公司(含高雄市)</option>
+            <option value="第一區管理處" {{ request('ExecutingUnit') == '第一區管理處' ? 'selected' : '' }}>第一區管理處</option>
+            <option value="第二區管理處" {{ request('ExecutingUnit') == '第二區管理處' ? 'selected' : '' }}>第二區管理處</option>
+            <option value="第三區管理處" {{ request('ExecutingUnit') == '第三區管理處' ? 'selected' : '' }}>第三區管理處</option>
+            <option value="第四區管理處" {{ request('ExecutingUnit') == '第四區管理處' ? 'selected' : '' }}>第四區管理處</option>
+            <option value="第五區管理處" {{ request('ExecutingUnit') == '第五區管理處' ? 'selected' : '' }}>第五區管理處</option>
+            <option value="第六區管理處" {{ request('ExecutingUnit') == '第六區管理處' ? 'selected' : '' }}>第六區管理處</option>
+            <option value="第七區管理處" {{ request('ExecutingUnit') == '第七區管理處' ? 'selected' : '' }}>第七區管理處</option>
+            <option value="第八區管理處" {{ request('ExecutingUnit') == '第八區管理處' ? 'selected' : '' }}>第八區管理處</option>
+            <option value="第九區管理處" {{ request('ExecutingUnit') == '第九區管理處' ? 'selected' : '' }}>第九區管理處</option>
+            <option value="第十區管理處" {{ request('ExecutingUnit') == '第十區管理處' ? 'selected' : '' }}>第十區管理處</option>
+            <option value="第十一區管理處" {{ request('ExecutingUnit') == '第十一區管理處' ? 'selected' : '' }}>第十一區管理處</option>
+            <option value="第十二區管理處" {{ request('ExecutingUnit') == '第十二區管理處' ? 'selected' : '' }}>第十二區管理處</option>
+            <option value="臺北自來水事業處" {{ request('ExecutingUnit') == '臺北自來水事業處' ? 'selected' : '' }}>臺北自來水事業處</option>
+            <option value="金門自來水廠" {{ request('ExecutingUnit') == '金門自來水廠' ? 'selected' : '' }}>金門自來水廠</option>
+            <option value="連江縣自來水廠" {{ request('ExecutingUnit') == '連江縣自來水廠' ? 'selected' : '' }}>連江縣自來水廠</option>
+        </select>
+        <button type="submit" class="btn btn-primary">查詢</button>
+    </div>
+</form>
+
                 <!-- 查詢結果顯示資料筆數 -->
                 @if(request()->has('ExecutingUnit'))
                 <p class="results">共查詢到 {{ $statistics->total() }} 筆資料</p>
@@ -32,13 +51,13 @@
                         <tr>
                             <th>機構別</th>
                             <th>統計日期時間</th>
-                            <th>實際供水人數</th>
+                            <th>實際供水<br>人數</th>
                             <th>供水普及率</th>
-                            <th>行政區域人數</th>
+                            <th>行政區域<br>人數</th>
                             <th>備註</th>
-                            <th>顯示</th>
-                            <th>編輯</th>
-                            <th>刪除</th>
+                            <th>顯<br>示</th>
+                            <th>編<br>輯</th>
+                            <th>刪<br>除</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,22 +69,22 @@
                                 <td>{{ $statistic->PercentageOfPopulationServed }}%</td>
                                 <td>{{ $statistic->PopulationInServedArea }}</td>
                                 <td>{{ $statistic->Remarks ?? '無' }}</td>
-                             <!-- 顯示按鈕 -->
-                            <td>
-                            <a href="{{ route('WaterSupplyStatistic.show', $statistic->id) }}" class="btn btn-info">顯示</a>
-                            </td>
-                            <td>
-                                <!-- 編輯按鈕 -->
-                                <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
-                               </td> 
-                             <td>
-                             <!-- 刪除按鈕 -->
-                             <form action="{{ route('WaterSupplyStatistic.destroy', $statistic->id) }}" method="POST" style="display:inline;">
-                                 @csrf
-                                 @method('DELETE')
-                                 <button type="submit" class="btn btn-danger">刪除</button>
-                             </form>
-                                    
+                                <!-- 顯示按鈕 -->
+                                <td>
+                                <a href="{{ route('WaterSupplyStatistic.show', $statistic->id) }}" class="btn btn-info">顯示</a>
+                                </td>
+                                <td>
+                                    <!-- 編輯按鈕 -->
+                                    <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
+                                </td> 
+                                
+                                <!-- 刪除按鈕 -->
+                                <td>
+                                <form action="{{ route('WaterSupplyStatistic.destroy', $statistic->id) }}" method="POST" style="display:inline;">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger">刪除</button>
+                                </form>
                                 </td>
                             </tr>
                         @empty
