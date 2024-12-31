@@ -100,7 +100,7 @@ class PopulationsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(CreatePopulationRequest $request, $id)
     {
         // 根據 ID 查找對應的 Population 資料
         $population = Population::findOrFail($id);

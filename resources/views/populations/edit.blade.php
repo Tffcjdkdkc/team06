@@ -3,6 +3,9 @@
 @section('title', 'team06 | 編輯自來水供水普及率')
 
 @section('content')
+
+@include('message.list')
+
     {!! Form::model($population, ['route' => ['populations.update', $population->id], 'method' => 'put']) !!}
 
     <h1>編輯表單</h1>
@@ -20,6 +23,7 @@
     <div class="form-group">
         {!! Form::label('executing_unit', '執行單位:') !!}
         {!! Form::select('executing_unit', [
+            '                              ' => '                               ',
             '台灣自來水股份有限公司(含高雄市)' => '台灣自來水股份有限公司(含高雄市)',
             '金門縣自來水廠' => '金門縣自來水廠',
             '第一區管理處' => '第一區管理處',

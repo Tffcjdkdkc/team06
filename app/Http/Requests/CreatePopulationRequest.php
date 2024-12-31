@@ -47,9 +47,9 @@ class CreatePopulationRequest extends FormRequest
             'date_time.date' => '請輸入有效的日期格式。',
     
             'executing_unit.required' => '請選擇執行單位。',
-            'executing_unit.max' => '執行單位名稱不能超過 255 個字符。',
+            'executing_unit.max' => '執行單位名稱不能符超過 255 個字。',
     
-            'percentage_of_population_served.required' => '供水人口比例必須計算。',
+            'percentage_of_population_served.required' => '供水人口比例自動計算(請輸入實際供水人口和輸入供水區域人口)。',
             'percentage_of_population_served.numeric' => '供水人口比例必須為數字。',
             'percentage_of_population_served.min' => '供水人口比例不能小於 0%。',
             'percentage_of_population_served.max' => '供水人口比例不能超過 100%。',
