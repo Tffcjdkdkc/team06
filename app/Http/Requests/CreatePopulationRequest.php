@@ -27,8 +27,8 @@ class CreatePopulationRequest extends FormRequest
     {
         return [
             'actual_population_served' => 'required|numeric|min:0|lte:population_in_served_area',
-            'date_time' => 'required|date',
-            'executing_unit' => 'required|string|max:255',
+            'date_time' => 'required',
+            'executing_unit' => 'required|string',
             'percentage_of_population_served' => 'required|numeric|min:0|max:100',
             'population_in_served_area' => 'required|numeric|min:0',
             'remarks' => 'nullable|string|max:500',
@@ -44,10 +44,9 @@ class CreatePopulationRequest extends FormRequest
             'actual_population_served.lte' => '實際供水人口不能超過供水區域人口。',
             
             'date_time.required' => '請選擇日期和時間。',
-            'date_time.date' => '請輸入有效的日期格式。',
+            
     
             'executing_unit.required' => '請選擇執行單位。',
-            'executing_unit.max' => '執行單位名稱不能符超過 255 個字。',
     
             'percentage_of_population_served.required' => '供水人口比例自動計算(請輸入實際供水人口和輸入供水區域人口)。',
             'percentage_of_population_served.numeric' => '供水人口比例必須為數字。',
