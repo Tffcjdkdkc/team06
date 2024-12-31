@@ -28,9 +28,9 @@ class CreatePopulationRequest extends FormRequest
         return [
             'actual_population_served' => 'required|numeric|min:0|lte:population_in_served_area',
             'date_time' => 'required',
-            'executing_unit' => 'required|string',
-            'percentage_of_population_served' => 'required|numeric|min:0|max:100',
-            'population_in_served_area' => 'required|numeric|min:0',
+            'executing_unit' => 'required',
+            'percentage_of_population_served' => 'required|numeric|max:100',
+            'population_in_served_area' => 'required|numeric|min:0|gt:0',
             'remarks' => 'nullable|string|max:500',
         ];
     }
@@ -50,12 +50,14 @@ class CreatePopulationRequest extends FormRequest
     
             'percentage_of_population_served.required' => '供水人口比例自動計算(請輸入實際供水人口和輸入供水區域人口)。',
             'percentage_of_population_served.numeric' => '供水人口比例必須為數字。',
-            'percentage_of_population_served.min' => '供水人口比例不能小於 0%。',
             'percentage_of_population_served.max' => '供水人口比例不能超過 100%。',
     
             'population_in_served_area.required' => '請輸入供水區域人口。',
             'population_in_served_area.numeric' => '供水區域人口必須是數字。',
             'population_in_served_area.min' => '供水區域人口不能為負數。',
+            'population_in_served_area.gt' => '供水區域人口不能為0',
+            
+            
     
             'remarks.max' => '備註內容不能超過 500 字。'
 

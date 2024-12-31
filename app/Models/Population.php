@@ -13,6 +13,7 @@ class Population extends Model
     protected $table = "water_service_populations";
 
     protected $fillable = [
+
         'actual_population_served',
         'date_time' ,
         'executing_unit' ,

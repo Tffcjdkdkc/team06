@@ -30,10 +30,10 @@ Route::get('/home', function () {
 
 Route::post('populations/store', [PopulationsController::class, 'store'])->name('populations.store');
 Route::get('populations/create', [PopulationsController::class, 'create'])->name('populations.create'); //新增資料
-Route::get('populations', [PopulationsController::class, 'index'])->name('populations.index'); //網頁
+Route::get('populations', [PopulationsController::class, 'index'])->name('populations.index'); //顯示全部資料的頁面
 Route::get('populations/{id}', [PopulationsController::class, 'show'])->where('id', '[0-9]+')->name('populations.show'); //查看資料
 Route::get('populations/{id}/edit', [PopulationsController::class, 'edit'])->where('id', '[0-9]+')->name('populations.edit'); //編輯資料
-Route::put('populations/{id}', [PopulationsController::class, 'update'])->name('populations.update'); //更新上傳儲存編輯資料
+Route::put('populations/{id}', [PopulationsController::class, 'update'])->name('populations.update'); //儲存資料
 Route::delete('populations/delete/{id}', [PopulationsController::class, 'destroy'])->where('id', '[0-9]+')->name('populations.destroy'); //刪除資料
 
 
