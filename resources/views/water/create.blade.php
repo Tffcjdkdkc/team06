@@ -1,6 +1,7 @@
 @extends('water.body')
 @extends('app') 
 @section('content')
+@include('message.list')
     <div class="container">
         <h1 class="text-center">新增自來水供水普及率資料</h1>
 
