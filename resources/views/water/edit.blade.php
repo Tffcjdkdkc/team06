@@ -4,6 +4,8 @@
 @section('title', '編輯自來水供水普及率資料')
 
 @section('content')
+
+@include('message.list')
 <div class="container">
     <h1 class="text-center">編輯自來水供水普及率資料</h1>
 
@@ -34,9 +36,7 @@
                 <option value="金門自來水廠" @if($statistic->ExecutingUnit == '金門自來水廠') selected @endif>金門自來水廠</option>
                 <option value="連江縣自來水廠" @if($statistic->ExecutingUnit == '連江縣自來水廠') selected @endif>連江縣自來水廠</option>
             </select>
-            @error('ExecutingUnit')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+
         </div>
         
 
@@ -74,5 +74,25 @@
       
     </form>
 </div>
+
+<script>
+    // 自動計算供水人口比例
+    window.onload = function() {
+        document.getElementById('ActualPopulationServed').addEventListener('input', calculatePercentage);
+        document.getElementById('PopulationInServedArea').addEventListener('input', calculatePercentage);
+    };
+
+    function calculatePercentage() {
+        var actualPopulation = parseFloat(document.getElementById('ActualPopulationServed').value);
+        var servedAreaPopulation = parseFloat(document.getElementById('PopulationInServedArea').value);
+
+        if (!isNaN(actualPopulation) && !isNaN(servedAreaPopulation) && servedAreaPopulation > 0) {
+            var percentage = (actualPopulation / servedAreaPopulation) * 100;
+            document.getElementById('PercentageOfPopulationServed').value = percentage.toFixed(2);
+        } else {
+            document.getElementById('PercentageOfPopulationServed').value = '';
+        }
+    }
+</script>
 
 @endsection

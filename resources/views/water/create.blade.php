@@ -1,13 +1,15 @@
 @extends('water.body')
 @extends('app') 
 @section('content')
+
 @include('message.list')
+
     <div class="container">
         <h1 class="text-center">新增自來水供水普及率資料</h1>
 
         <form method="POST" action="{{ route('WaterSupplyStatistic.store') }}">
             @csrf
-
+            
                     <!-- 機構別 (Dropdown) -->
         <div class="form-group">
             <label for="ExecutingUnit">機構別</label>
@@ -30,9 +32,7 @@
                 <option value="金門自來水廠">金門自來水廠</option>
                 <option value="連江縣自來水廠">連江縣自來水廠</option>
             </select>
-            @error('ExecutingUnit')
-                <div class="invalid-feedback">{{ $message }}</div>
-            @enderror
+
         </div>
             
 
@@ -40,42 +40,34 @@
             <div class="form-group">
                 <label for="DateTime">統計日期時間</label>
                 <input type="datetime-local" class="form-control @error('DateTime') is-invalid @enderror" id="DateTime" name="DateTime" value="{{ old('DateTime') }}" required>
-                @error('DateTime')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+
             </div>
 
             <!-- 實際供水人數 -->
             <div class="form-group">
                 <label for="ActualPopulationServed">實際供水人數</label>
                 <input type="number" class="form-control @error('ActualPopulationServed') is-invalid @enderror" id="ActualPopulationServed" name="ActualPopulationServed" value="{{ old('ActualPopulationServed') }}" required>
-                @error('ActualPopulationServed')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+
             </div>
 
            <!-- 供水普及率 -->
-<div class="form-group">
-    <label for="PercentageOfPopulationServed">供水普及率 (%)</label>
-    <input type="number" class="form-control" id="PercentageOfPopulationServed" name="PercentageOfPopulationServed" value="{{ old('PercentageOfPopulationServed') }}" readonly>
-</div>
+            <div class="form-group">
+                <label for="PercentageOfPopulationServed">供水普及率 (%)</label>
+                <input type="number" class="form-control" id="PercentageOfPopulationServed" name="PercentageOfPopulationServed" value="{{ old('PercentageOfPopulationServed') }}" readonly>
+            </div>
 
             <!-- 行政區域人數 -->
             <div class="form-group">
                 <label for="PopulationInServedArea">行政區域人數</label>
                 <input type="number" class="form-control @error('PopulationInServedArea') is-invalid @enderror" id="PopulationInServedArea" name="PopulationInServedArea" value="{{ old('PopulationInServedArea') }}" required>
-                @error('PopulationInServedArea')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+
             </div>
 
             <!-- 備註 -->
             <div class="form-group">
                 <label for="Remarks">備註</label>
                 <textarea class="form-control @error('Remarks') is-invalid @enderror" id="Remarks" name="Remarks">{{ old('Remarks') }}</textarea>
-                @error('Remarks')
-                    <div class="invalid-feedback">{{ $message }}</div>
-                @enderror
+
             </div>
 
             <button type="submit" class="btn btn-primary">儲存資料</button>
@@ -84,7 +76,26 @@
     </div>
 
     <script>
-        document.addEventListener('input', function () {
+         // 自動計算供水人口比例
+    window.onload = function() {
+        document.getElementById('ActualPopulationServed').addEventListener('input', calculatePercentage);
+        document.getElementById('PopulationInServedArea').addEventListener('input', calculatePercentage);
+    };
+
+    function calculatePercentage() {
+        var actualPopulation = parseFloat(document.getElementById('ActualPopulationServed').value);
+        var servedAreaPopulation = parseFloat(document.getElementById('PopulationInServedArea').value);
+
+
+
+        if (!isNaN(actualPopulation) && !isNaN(servedAreaPopulation) && servedAreaPopulation > 0) {
+            var percentage = (actualPopulation / servedAreaPopulation) * 100;
+            document.getElementById('PercentageOfPopulationServed').value = percentage.toFixed(2);
+        } else {
+            document.getElementById('PercentageOfPopulationServed').value = '';
+        }
+    }
+      /* document.addEventListener('input', function () {
     var actualPopulationServed = document.getElementById('ActualPopulationServed').value;
     var populationInServedArea = document.getElementById('PopulationInServedArea').value;
     var executingUnit = document.getElementById('ExecutingUnit').value;
@@ -168,7 +179,7 @@
             actualPopulationField.setCustomValidity('');
         }
     }
-});
+}); */
 
     </script>
 

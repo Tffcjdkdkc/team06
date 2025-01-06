@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\CreatePopulationRequest;
 
 use App\Models\WaterSupplyStatistic;
 use Illuminate\Http\Request;
@@ -53,67 +54,63 @@ class WaterSupplyStatisticController extends Controller
         return view('water.create');  // 返回水資源統計表單視圖
     }
 
-    public function store(Request $request)
-    {
-        // 驗證輸入
-        $validated = $request->validate([
-            'ExecutingUnit' => 'required|string|max:255',
-            'DateTime' => 'required|date',
-            'ActualPopulationServed' => 'required|numeric',
-            'PopulationInServedArea' => 'required|numeric',
-            'Remarks' => 'nullable|string',
-        ]);
+    public function store(CreatePopulationRequest $request)
+{
+    // 驗證表單資料
+    $data = $request->only([
+        'ExecutingUnit',
+        'DateTime',
+        'ActualPopulationServed',
+        'PopulationInServedArea',
+        'Remarks',
+    ]);
 
-        // 計算供水普及率
-        $percentage = ($validated['ActualPopulationServed'] / $validated['PopulationInServedArea']) * 100;
+    // 計算供水普及率
+    $percentage = ($data['ActualPopulationServed'] / $data['PopulationInServedArea']) * 100;
 
-        // 新增資料
-        $statistic = new WaterSupplyStatistic();
-        $statistic->ExecutingUnit = $validated['ExecutingUnit'];
-        $statistic->DateTime = $validated['DateTime'];
-        $statistic->ActualPopulationServed = $validated['ActualPopulationServed'];
-        $statistic->PopulationInServedArea = $validated['PopulationInServedArea'];
-        $statistic->PercentageOfPopulationServed = $percentage;
-        $statistic->Remarks = $validated['Remarks'];
+    // 將計算結果加到資料中
+    $data['PercentageOfPopulationServed'] = round($percentage, 2);
 
-        // 保存數據
-        $statistic->save();
+    // 儲存資料
+    $population = WaterSupplyStatistic::create($data);
 
-        // 跳轉或返回
-        return redirect()->route('water')->with('success', '資料已成功新增！');
+    // 跳轉並帶入成功訊息
+    return redirect('water')->with('success', '資料已成功新增！');
+}
+
+
+    public function update(CreatePopulationRequest $request, $id)
+{
+    // 根據 ID 查找對應的 Population 資料
+    $population = WaterSupplyStatistic::findOrFail($id);
+
+    // 驗證表單資料
+    $data = $request->only([
+        'ActualPopulationServed',
+        'DateTime',
+        'ExecutingUnit',
+        'PopulationInServedArea',
+        'Remarks',
+    ]);
+
+    // 檢查供水區域人口是否大於零，避免除以零錯誤
+    if ($data['PopulationInServedArea'] <= 0) {
+        return redirect()->back()->withErrors(['PopulationInServedArea' => '供水區域人口不能為零或負數。']);
     }
 
-    public function update(Request $request, $id)
-    {
-        // 驗證輸入
-        $validated = $request->validate([
-            'ExecutingUnit' => 'required|string|max:255',
-            'DateTime' => 'required|date',
-            'ActualPopulationServed' => 'required|numeric',
-            'PopulationInServedArea' => 'required|numeric',
-            'Remarks' => 'nullable|string',
-        ]);
+    // 計算供水普及率
+    $percentage = ($data['ActualPopulationServed'] / $data['PopulationInServedArea']) * 100;
 
-        // 查找要更新的資料
-        $statistic = WaterSupplyStatistic::findOrFail($id);
+    // 添加計算後的百分比到資料
+    $data['PercentageOfPopulationServed '] = $percentage;
 
-        // 更新資料
-        $statistic->ExecutingUnit = $validated['ExecutingUnit'];
-        $statistic->DateTime = $validated['DateTime'];
-        $statistic->ActualPopulationServed = $validated['ActualPopulationServed'];
-        $statistic->PopulationInServedArea = $validated['PopulationInServedArea'];
-        $statistic->Remarks = $validated['Remarks'];
+    // 更新該資料
+    $population->update($data);
 
-        // 計算供水普及率
-        $percentage = ($validated['ActualPopulationServed'] / $validated['PopulationInServedArea']) * 100;
-        $statistic->PercentageOfPopulationServed = $percentage;
+    // 重定向到資料列表頁面
+    return redirect()->route('water')->with('success', '資料更新成功!');
+}
 
-        // 保存更新
-        $statistic->save();
-
-        // 跳轉或返回
-        return redirect()->route('water')->with('success', '資料已成功更新！');
-    }
 
     public function show($id)
     {
