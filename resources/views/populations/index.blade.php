@@ -2,16 +2,54 @@
 @section('title', 'team06 | 自來水供水普及率')
 @section('content')
 
+<body class="antialiased">
+    <style>
+        /* 自定義 CSS 用來將登錄和註冊鏈接定位到右上角 */
+        .login-register-links {
+            position: absolute; /* 使用絕對定位 */
+            top: 20px; /* 距離頁面頂部 20px */
+            right: 20px; /* 距離頁面右邊 20px */
+            display: flex; /* 使用 flex 排版 */
+            gap: 15px; /* 控制鏈接之間的間距 */
+        }
+    </style>
 
+    <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        @if (Route::has('login'))
+            <div class="login-register-links">
+                @auth
+                    <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
+                @else
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Log in</a>
+
+                    @if (Route::has('register'))
+                        <a href="{{ route('register') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Register</a>
+                    @endif
+                @endauth
+            </div>
+        @endif
+      
     <h2><mark><a href="http://127.0.0.1:8000/sdgs">什麼是SDGS?</a></mark></h2>
-    <h2><mark><a href="http://127.0.0.1:8000/home">返回首頁</a></mark></h2>
     <h2>以下是隨機生成資料:</h2>
-    <button class="btn btn-primary" onclick="window.location.href='{{ route('populations.create') }}'"><h4>新增自來水供水普及率資料</h4></button>
+
+
+
+    @can('admin')
+        <button class="btn btn-primary" onclick="window.location.href='{{ route('populations.create') }}'"><h4>新增自來水供水普及率資料</h4></button>
+    @endcan
+        
+
+    @can('admin')
+    <a href="http://127.0.0.1:8000/populations/create"></a>
+    @endcan
 
     
-    
+   
+
       <!-- Search Form -->
       <h3>執行單位或完整日期時間(自動搜尋):</h3><input type="text" id="searchInput" placeholder="輸入執行單位或日期時間" onkeyup="filterData()" class="form-control mb-3">
+
+
       <table id="populationTable">
         <thead>
             <tr>
@@ -22,8 +60,12 @@
                 <th>供水區域人口</th>
                 <th>備註</th>
                 <th>操作1</th>
+                @can('admin')
+                <th>操作2</th> 
+                <th>操作3</th> 
+                @elsecan('manager')
                 <th>操作2</th>
-                <th>操作3</th>  
+                @endcan 
             </tr>
         </thead>
         <tbody>
@@ -36,14 +78,20 @@
                     <td>{{ $population->population_in_served_area }}</td>
                     <td>{{ $population->remarks }}</td>
                     <td><a href="{{ route('populations.show', ['id' => $population->id]) }}">顯示</a></td>
+                    @can('admin')
                     <td><a href="{{ route('populations.edit', ['id' => $population->id]) }}">編輯</a></td>
                     <td>
-                        <form action="{{ url('/populations/delete', ['id' => $population->id]) }}" method="post">
+                            <form action="{{ url('/populations/delete', ['id' => $population->id]) }}" method="post">
                             <input class="btn btn-default" type="submit" value="刪除" />
                             @method('delete')
-                            @csrf
+                        
+                        @csrf
                         </form>
                     </td>
+                    @elsecan('manager')
+                    <td><a href="{{ route('populations.edit', ['id' => $population->id]) }}">編輯</a></td>
+                    @endcan
+
                 </tr>
             @endforeach
         </tbody>

@@ -1,9 +1,27 @@
-@extends('app')
-
-@section('title', '首頁')
+@extends('layouts.app')
 
 @section('content')
-<h2><mark><a href="http://127.0.0.1:8000/sdgs">sdgs介紹</a></mark></h2>
-<h1><mark>自來水供水普及率與SDGS</mark></h1>
-<h2>自來水供水普及率是實現 SDG 6（清潔飲水和衛生設施） 的關鍵，因為它直接影響安全飲用水的可得性、衛生條件和健康水平。</h2>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Dashboard') }}</div>
+
+                <div class="card-body">
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
+                    <h4><a href="http://127.0.0.1:8000/populations">自來水供水普及率</a></h4>
+                   
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
