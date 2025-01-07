@@ -63,6 +63,7 @@ class WaterSupplyStatisticController extends Controller
         'ActualPopulationServed',
         'PopulationInServedArea',
         'Remarks',
+        'PercentageOfPopulationServed',
     ]);
 
     // 計算供水普及率
@@ -91,6 +92,7 @@ class WaterSupplyStatisticController extends Controller
         'ExecutingUnit',
         'PopulationInServedArea',
         'Remarks',
+        'PercentageOfPopulationServed',
     ]);
 
     // 檢查供水區域人口是否大於零，避免除以零錯誤
