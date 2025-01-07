@@ -39,3 +39,7 @@ Route::get('WaterSupplyStatistic/edit/{id}', [WaterSupplyStatisticController::cl
 Route::put('WaterSupplyStatistic/update/{id}', [WaterSupplyStatisticController::class, 'update'])->name('WaterSupplyStatistic.update');
 //顯示
 Route::get('water/{id}', [WaterSupplyStatisticController::class, 'show'])->name('WaterSupplyStatistic.show');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

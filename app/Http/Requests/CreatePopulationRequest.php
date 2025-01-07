@@ -29,7 +29,7 @@ class CreatePopulationRequest extends FormRequest
             'ActualPopulationServed' => 'required|numeric|min:0|lte:PopulationInServedArea', // Ensure it doesn't exceed the served area
             'PercentageOfPopulationServed' => 'required|numeric|max:100',
             'PopulationInServedArea' => 'required|numeric|min:1', // Ensure population is at least 1 (greater than zero)
-            'Remarks' => 'nullable|string|max:500',
+            'Remarks' => 'nullable|string|max:50',
         ];
     }
 
@@ -48,7 +48,7 @@ class CreatePopulationRequest extends FormRequest
             'PopulationInServedArea.required' => '請輸入供水區域人口。',
             'PopulationInServedArea.numeric' => '供水區域人口必須是數字。',
             'PopulationInServedArea.min' => '供水區域人口必須大於 0。',
-            'Remarks.max' => '備註內容不能超過 500 字。',
+            'Remarks.max' => '備註內容不能超過 50 字。',
         ];
     }
 }
