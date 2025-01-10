@@ -4,13 +4,14 @@ namespace App\Providers;
 
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
+use App\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
     /**
      * The policy mappings for the application.
      *
-     * @var array<class-string, class-string>
+     * @var array
      */
     protected $policies = [
         // 'App\Models\Model' => 'App\Policies\ModelPolicy',
@@ -22,9 +23,28 @@ class AuthServiceProvider extends ServiceProvider
      * @return void
      */
     public function boot()
-    {
-        $this->registerPolicies();
+{
+    $this->registerPolicies();
 
-        //
-    }
+    // 系統管理者 Gate 規則
+    Gate::define('admin', function ($user) {
+        return $user->role === User::ROLE_ADMIN;
+    });
+
+    // 一般管理者 Gate 規則
+    Gate::define('manager', function ($user) {
+        return $user->role === User::ROLE_MANAGER;
+    });
+
+    // 一般使用者 Gate 規則
+    Gate::define('user', function ($user) {
+        return $user->role === User::ROLE_USER;
+    });
+
+    // 定義 'manager' 或 'admin' 的 Gate 規則
+    Gate::define('manager-or-admin', function ($user) {
+        return in_array($user->role, [User::ROLE_MANAGER, User::ROLE_ADMIN]);
+    });
+}
+
 }

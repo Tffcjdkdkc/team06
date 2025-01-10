@@ -41,8 +41,10 @@
                 <p class="results">共查詢到 {{ $statistics->total() }} 筆資料</p>
                 @endif
 
-                       <!-- 新增按鈕 -->
-                         <a href="{{ route('WaterSupplyStatistic.create') }}" class="btn btn-success">新增</a>
+                                <!-- 根據用戶角色顯示新增按鈕 -->
+                @can('admin') <!-- 只有 admin 可以看到新增按鈕 -->
+                <a href="{{ route('WaterSupplyStatistic.create') }}" class="btn btn-success">新增</a>
+            @endcan
 
             <!-- 表格顯示資料 -->
             <div class="table-responsive mt-4">
@@ -73,19 +75,25 @@
                                 <td>
                                 <a href="{{ route('WaterSupplyStatistic.show', $statistic->id) }}" class="btn btn-info">顯示</a>
                                 </td>
-                                <td>
-                                    <!-- 編輯按鈕 -->
-                                    <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
-                                </td> 
                                 
-                                <!-- 刪除按鈕 -->
+                            <!-- 編輯按鈕 -->
+                            @if (auth()->user()->can('manager') || auth()->user()->can('admin')) <!-- 只有 manager 和 admin 可以編輯 -->
                                 <td>
-                                <form action="{{ route('WaterSupplyStatistic.destroy', $statistic->id) }}" method="POST" style="display:inline;">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger">刪除</button>
-                                </form>
+                                    <a href="{{ route('WaterSupplyStatistic.edit', $statistic->id) }}" class="btn btn-warning">編輯</a>
                                 </td>
+                            @endif
+
+                                
+                        <!-- 刪除按鈕 -->
+                        @can('admin') <!-- 只有 admin 可以刪除 -->
+                        <td>
+                            <form action="{{ route('WaterSupplyStatistic.destroy', $statistic->id) }}" method="POST" style="display:inline;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">刪除</button>
+                            </form>
+                        </td>
+                        @endcan
                             </tr>
                         @empty
                             <tr>
