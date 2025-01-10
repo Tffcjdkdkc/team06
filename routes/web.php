@@ -45,6 +45,31 @@ Route::get('/populations/create', function () {
 })->name('populations.create')->middleware('auth');  // 確保使用者已經登入
 //防止其他用戶手動輸入網址進入create,只有admin才能進入新增資料畫面
 
+// 防止其他用戶手動輸入網址進入edit,只有admin 或 manager才能進入編輯資料畫面
+Route::get('populations/{id}/edit', function ($id) {
+    // 檢查用戶是否已登入且是 admin 或 manager
+    if (auth()->check() && (auth()->user()->role === 'admin' || auth()->user()->role === 'manager')) {
+        return app(PopulationsController::class)->edit($id);  // 管理員或經理才能進入
+    }
+
+    // 如果用戶不是 admin 或 manager，則返回 403 錯誤頁面
+    abort(403);  // 會顯示錯誤頁面
+})->name('populations.edit')->middleware('auth');  // 確保使用者已經登入
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -6,7 +6,7 @@
     <title>@yield('title')</title>
 
     <!-- 加入 Favicon -->
-    <link rel="icon" href="http://localhost/team06/image/sdgs06_longer.png" type="image/png">
+    <link rel="icon" href="http://localhost/team06/image/SDG06" type="image/png">
 
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <style>  
